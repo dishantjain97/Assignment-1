@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text],input[type=email] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+select
+{
+ 	width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit]
+{
+	width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:14px;
+}
+</style>
+<body>
+
+
+
+<div align="center">
+
+  <form name="myForm" 
+onsubmit="storeData()" method="post">
+    
+
+    
+    <select id="aritcle" name="articles">
+      <option value="article1">Article1</option>
+      <option value="article2">Article2</option>
+      <option value="article3">Article3</option>
+      <option value="article4">Article4</option>
+      <option value="article5">Article5</option>
+      
+    </select>
+	<br>
+    <textarea rows="10" cols=60% id="feedback" name="feedback"></textarea>
+    <br>
+    
+    <label for="name" align="left">Name</label>
+    <input type="text" id="name" name="name" >
+    <br>
+
+    <label for="email">Email<label>
+    <input type="email" id="email" name="email" >
+    <br>
+    <input type="submit" value="Submit" onclick="return validateForm()">
+  </form>
+</div>
+<script>
+function validateForm() {
+	
+    var name = document.forms["myForm"]["name"].value;
+	var email = document.forms["myForm"]["email"].value;
+	var feedback = document.forms["myForm"]["feedback"].value;
+    if (name == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+	if (email == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+	if (feedback == "") {
+        alert("Feedback must be filled out");
+        return false;
+    }
+	
+}
+function storeData(){
+	
+    var name = document.forms["myForm"]["name"].value;
+	var email = document.forms["myForm"]["email"].value;
+	var feedback = document.forms["myForm"]["feedback"].value;
+	var lscount = localStorage.length/3;
+	
+	localStorage.setItem("name_"+lscount,name); 
+	localStorage.setItem("email_"+lscount,email);
+	localStorage.setItem("feedback_"+lscount,feedback);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div align="center">
+<head>
+<h1 >Feedback Details</h1>
+</head>
+<p id="demo"></p>
+</div>
+<script>
+ function myFunction() { 
+	
+    var datacount = localStorage.length/3; 
+    if (datacount > 0) 
+    { 
+        var render = "<table border='1' width=80%>"; 
+        render += "<tr><th>Name</th><th>Email</th><th>Feedback</th></tr>"; 
+        for (i = 0; i < datacount; i++) { 
+            var Name = localStorage.getItem("name_"+i); 
+			 var Email = localStorage.getItem("email_"+i); 
+			  var Feedback = localStorage.getItem("feedback_"+i); 
+            
+            render += "<tr><td>" + Name + "</td>";
+            render += "<td>" + Email + "</td>"; 
+            render += "<td>" + Feedback + "</td></tr>"; 
+            
+        } 
+        render+="</table>"; 
+        return render;
+    } 
+}
+document.getElementById("demo").innerHTML = myFunction();
+</script>
+
+</body>
+</html>

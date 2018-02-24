@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+iframe {
+          /* iframes are inline by default */
+    
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    position: auto;
+}
+header{
+    width: 95%;
+    background: white;
+    position: fixed; 
+    top: 0;
+	vertical-align: bottom;
+    height: 60px !important;
+    z-index:100;
+}
+h3 {
+    height: inherit;
+    vertical-align: bottom;
+   
+	}
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #444;
+    overflow-x: hidden;
+    padding-top: 5px;
+    margin-top: 60px;
+     border: 1px solid #333;
+   
+    
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+     border-bottom: 1px solid #333;
+    
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #333;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    margin-top: 60px;
+    font-size: 28px; /* Increased text to enable scrolling */
+    
+}
+
+/*@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 10px;}
+    .sidenav a {font-size: 18px;}
+}*/
+</style>
+</head>
+<body>
+<header>
+    <h3 style="text-align:left;">
+MarvelFanSite.com<span style="float:right;"><a href="pages/Login.htm" target="ifrm">Admin</a></span>
+</h3>
+</header>
+<div class="sidenav">
+  <a href="pages/profile.htm" target="ifrm">Home</a>
+  <a href="pages/Article1.htm" target="ifrm">Black Panther</a>
+  <a href="pages/Article2.htm"target="ifrm">Infinity War</a>
+  <a href="pages/Article3.htm" target="ifrm">Thor Ragnarok</a>
+  <a href="pages/Article4.htm" target="ifrm">Iron Man</a>
+  <a href="pages/Article5.htm" target="ifrm">Sound Track</a>
+  <a href="pages/Feedback.htm" target="ifrm">Feedback</a>
+</div>
+
+<div class="main">
+<iframe name="ifrm" src="pages/profile.htm"  scrolling="no"width=100%></iframe>
+</div>
+  
+</body>
+</html> 
