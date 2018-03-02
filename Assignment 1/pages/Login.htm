@@ -43,7 +43,7 @@ div {
 
 
 <div>
-  <form name="login" action="feedbackentries.htm">
+  <form name="login" action="feedbackentries.htm" onsubmit="login()" >
     <label for="uname">Username</label>
     <input type="text" id="uname" name="username" placeholder="Username">
 
@@ -61,13 +61,19 @@ function validLogin()
 	var uname = document.forms["login"]["username"].value;
 	var password = document.forms["login"]["password"].value;
 	if(uname=="admin"&&password=="password")
-		return truel
+	{
+		localStorage.setItem('login','true');
+		return true;
+	}
 	else
 	{
 		alert("Enter valid username and password");
 		return false;
 	}
-
+}
+function login()
+{
+	localStorage.setItem('login','true');
 }
 </script>
 </body>
