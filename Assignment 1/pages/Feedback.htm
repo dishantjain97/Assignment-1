@@ -39,16 +39,16 @@ input[type=submit]
 <div align="center">
 
   <form name="myForm" 
-onsubmit="storeData()" method="post">
+   onsubmit="storeData()" method="post">
     
 
     
-    <select id="aritcle" name="articles">
-      <option value="article1">Black Panther</option>
-      <option value="article2">Infinity War</option>
-      <option value="article3">Thor Ragnarok</option>
-      <option value="article4">Iron Man</option>
-      <option value="article5">Sound Track</option>
+    <select id="article" name="articles">
+      <option value="blp">Black Panther</option>
+      <option value="inw">Infinity War</option>
+      <option value="thr">Thor Ragnarok</option>
+      <option value="irm">Iron Man</option>
+      <option value="str">Sound Track</option>
       
     </select>
 	<br>
@@ -90,11 +90,15 @@ function storeData(){
     var name = document.forms["myForm"]["name"].value;
 	var email = document.forms["myForm"]["email"].value;
 	var feedback = document.forms["myForm"]["feedback"].value;
-	var lscount = localStorage.length/3;
-	
-	localStorage.setItem("name_"+lscount,name); 
-	localStorage.setItem("email_"+lscount,email);
-	localStorage.setItem("feedback_"+lscount,feedback);
+	var article = document.getElementById("article").value;
+	var lscount = localStorage.getItem(article+"count");	
+	if(lscount==null)
+		lscount=0;
+	localStorage.setItem("name_"+article+lscount,name); 
+	localStorage.setItem("email_"+article+lscount,email);
+	localStorage.setItem("feedback_"+article+lscount,feedback);
+	lscount = parseInt(lscount) +1;
+	localStorage.setItem(article+"count",lscount);
 }
 </script>
 </body>
