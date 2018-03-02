@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+function changeURL(url)
+{
+	  document.getElementById('ifrm').src = 'pages/'+url;	
+}
+function loggedin()
+{
+	var x = localStorage.getItem('login');
+	if(x == "true")
+		changeURL('feedbackentries.htm');
+	else 
+		changeURL('Login.htm');
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-    font-family: "Lato", sans-serif;
-}
-iframe {
-          /* iframes are inline by default */
-    
-    border: none;         /* Reset default border */
-    height: 100vh;        /* Viewport-relative units */
+iframe {    
+    border: none;        
+    height: 100vh;       
     position: auto;
 }
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    margin-top: 60px;
+    font-size: 28px; /* Increased text to enable scrolling */
+	}
 header{
     width: 95%;
     background: white;
@@ -36,60 +50,63 @@ h3 {
     left: 0;
     background-color: #444;
     overflow-x: hidden;
-    padding-top: 5px;
+    
     margin-top: 60px;
-     border: 1px solid #333;
+    border: 1px solid #333;
    
     
 }
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+.btn {
      border-bottom: 1px solid #333;
-    
+    outline: none;
+    padding: 10px 16px;
+   background-color: #444;
+    cursor: pointer;
+    font-size: 18px;
+	width:160px;
+	color: #818181;
 }
 
-.sidenav a:hover {
+
+.active, .btn:hover {
     color: #f1f1f1;
-    background-color: #333;
+    background-color: #111;
 }
-
-.main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    margin-top: 60px;
-    font-size: 28px; /* Increased text to enable scrolling */
-    
-}
-
-/*@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 10px;}
-    .sidenav a {font-size: 18px;}
-}*/
 </style>
 </head>
 <body>
+
 <header>
     <h3 style="text-align:left;">
-MarvelFanSite.com<span style="float:right;"><a href="pages/Login.htm" target="ifrm">Admin</a></span>
+MarvelFanSite.com<span style="float:right;"><button onclick="loggedin()">Admin</button></span>
 </h3>
 </header>
-<div class="sidenav">
-  <a href="pages/profile.htm" target="ifrm">Home</a>
-  <a href="pages/Article1.htm" target="ifrm">Black Panther</a>
-  <a href="pages/Article2.htm"target="ifrm">Infinity War</a>
-  <a href="pages/Article3.htm" target="ifrm">Thor Ragnarok</a>
-  <a href="pages/Article4.htm" target="ifrm">Iron Man</a>
-  <a href="pages/Article5.htm" target="ifrm">Sound Track</a>
-  <a href="pages/Feedback.htm" target="ifrm">Feedback</a>
-</div>
-
-<div class="main">
-<iframe name="ifrm" src="pages/profile.htm"  scrolling="no"width=100%></iframe>
-</div>
   
+<div id="myDIV" class="sidenav">
+  <button class="btn active">Home</button>
+  <button class="btn" onclick="changeURL('Article1.htm')">Black Panther</button>
+  <button class="btn" onclick="changeURL('Article2.htm')">Infinity War</button>
+  <button class="btn" onclick="changeURL('Article3.htm')">Thor Ragnarok</button>
+  <button class="btn" onclick="changeURL('Article4.htm')">Iron Man</button>
+  <button class="btn" onclick="changeURL('Article5.htm')">Sound Track</button>
+  <button class="btn" onclick="changeURL('Feedback.htm')">Feedback</button>
+</div>
+<div class="main">
+<iframe name="ifrm" id="ifrm" src="pages/profile.htm"  scrolling="no"width=100%></iframe>
+</div>
+<script>
+
+var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+</script>
+
 </body>
-</html> 
+</html>
