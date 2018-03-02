@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html>
+<style>
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+    background-color: #666;
+    color: white;
+}
+</style>
 <body>
 
 
-<div align="center">
+<div align="center" id="myDIV">
 <head>
 <h1 >Feedback Details</h1>
 </head>
+<button  id="blp" class="btn active" >Black Panther</button>
+<button  id="inw" class="btn">Infinity War</button>
+<button  id="thr" class="btn">Thor Ragnarok</button>
+<button  id="irm" class="btn">Iron Man</button>
+<button  id="str" class="btn">Sound Track</button>
 <p id="demo"></p>
+<button onclick="logout()">Logout</button>
 </div>
 <script>
- function myFunction() { 
+ function myFunction(article) { 
 	
-    var datacount = localStorage.length/3; 
+    var datacount = localStorage.getItem(article+"count"); 
     if (datacount > 0) 
     { 
         var render = "<table border='1' width=80%>"; 
         render += "<tr><th>Name</th><th>Email</th><th>Feedback</th></tr>"; 
         for (i = 0; i < datacount; i++) { 
-            var Name = localStorage.getItem("name_"+i); 
-			 var Email = localStorage.getItem("email_"+i); 
-			  var Feedback = localStorage.getItem("feedback_"+i); 
+            var Name = localStorage.getItem("name_"+article+i); 
+			 var Email = localStorage.getItem("email_"+article+i); 
+			  var Feedback = localStorage.getItem("feedback_"+article+i); 
             
             render += "<tr><td>" + Name + "</td>";
             render += "<td>" + Email + "</td>"; 
@@ -31,7 +53,26 @@
         return render;
     } 
 }
-document.getElementById("demo").innerHTML = myFunction();
+
+
+function logout(){
+localStorage.setItem('login','false');
+window.location ='Login.htm';	
+}
+var header = document.getElementById("myDIV");
+var btns = document.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+	var  active = document.getElementsByClassName("active");
+	document.getElementById("demo").innerHTML = myFunction(active[0].id);
+  });
+}
+var  active = document.getElementsByClassName("active");
+document.getElementById("demo").innerHTML = myFunction(active[0].id);
 </script>
 
 </body>
