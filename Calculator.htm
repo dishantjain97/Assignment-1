@@ -1,0 +1,159 @@
+<!Doctype html>  
+<html>  
+<head>  
+<title>Javascript Calculator</title>  
+ 
+<style>  
+body {  
+background-color:#fff;  
+margin: 0px auto;  
+  
+}  
+.calbody{  
+ background: #444;  
+ border: 1px solid #ff0;  
+ padding: 10px;  
+ margin-left: 450px;  
+ min-width: 27.4em;  
+ max-width: 27.4em;  
+ border-radius:15px;
+   
+}  
+h1{  
+ text-align: center;  
+ font-size: 40px;  
+ color: #003652;  
+   
+}  
+  
+#lcd{  
+ text-align: right;  
+ width: 23em;  
+ height: 40px;  
+ font-size: 18px;  
+   
+}    
+
+  
+button{  
+ background-color: #fff;  
+ width: 80px;  
+ height: 60px;  
+ font-size: 20px;  
+ border: 1px solid #097C9B;  
+ border-radius:15px;
+  
+}  
+  
+button:hover{  
+  background-color: #509CA9;   
+    
+ }  
+  
+</style>  
+</head>  
+<body>  
+<h1>  
+Javascript Calculator</h1>  
+<div class="calbody">  
+<form name="lcdform">  
+<input id="lcd" name="lcds" type="text" style="border-radius:10px"value="" />  
+</form>  
+<div id="calbutton" >  
+<button id="num7" onclick="num('7');">7</button>  
+<button id="num8" onclick="num('8');">8</button>    
+<button id="num9" onclick="num('9');">9</button>  
+<button id="operationminus" onclick="operation('-');">-</button>  
+<button id="clr" onclick="clr();">C</button> 
+<br> 
+<button id="num4" onclick="num('4');">4</button>  
+<button id="num5" onclick="num('5');">5</button>  
+<button id="num6" onclick="num('6');">6</button>  
+<button id="operationmult" onclick="operation('*');">*</button> 
+<button id="del" onclick="del();">Del</button>  
+<br> 
+<button id="num1" onclick="num('1');">1</button>  
+<button id="num2" onclick="num('2');">2</button>  
+<button id="num3" onclick="num('3');">3</button>  
+<button id="operationplus" onclick="operation('+');">+</button>  
+<br>  
+<button id="num0" onclick="num('0');">0</button>  
+<button id="decimal" onclick="decimal();">.</button>  
+<button id="operationdivid" onclick="operation('/');">/</button>  
+<button id="sumbit" onclick="equalsto();">=</button>  
+</div>  
+</div>  
+ 
+<script>  
+  
+var deci=false;  
+var result;  
+var operations="";  
+  
+function num(digit){  
+if ( document.lcdform.lcds.value == result || document.lcdform.lcds.value == "0" ){  
+    
+  document.lcdform.lcds.value = digit;  
+      
+ }  
+ 
+ else{
+  document.lcdform.lcds.value += digit;  
+ 
+  } 
+}  
+
+function clr(){  
+ document.lcdform.lcds.value = "";  
+	deci = false;
+ return;  
+}  
+function decimal()
+{
+	var exp = document.lcdform.lcds.value;
+   var lc = exp[exp.length-1];
+   if(lc!= "."&&!deci){
+   document.lcdform.lcds.value += ".";  
+   deci = true;
+   }
+	
+}
+function del(){
+	var exp = document.lcdform.lcds.value;
+   var lc = exp[exp.length-1];
+	if(lc=="."){deci= false;}
+	exp=exp.substring(0,exp.length-1);
+	document.lcdform.lcds.value =exp; 
+	
+}  
+function operation(op){  
+   var exp = document.lcdform.lcds.value;
+   var lc = exp[exp.length-1];
+ 
+   if(lc == "+"||lc == "-"||lc == "*"||lc == "/"){
+   exp=exp.substring(0,exp.length-1);
+   document.lcdform.lcds.value =exp+op; 
+     decimal=false;
+   }
+   else if(lc == ".")
+   {
+	alert("please eneter complete number");
+   }
+   else
+   document.lcdform.lcds.value += op; 
+   deci=false;
+    
+}  
+
+
+function equalsto(){    
+ 
+	result = eval(document.lcdform.lcds.value);
+    document.lcdform.lcds.value =  result ;
+	deci=false;
+ 
+}  
+    
+</script>  
+</body>  
+</html>  
