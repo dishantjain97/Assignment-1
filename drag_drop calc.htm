@@ -1,0 +1,180 @@
+<!DOCTYpE HTML>
+<html>
+<head>
+<style>
+.wrap {
+    width: 100%;
+}
+
+.floatleft {
+    float:left; 
+    width: 50%;
+   
+    height: 400px;
+}
+
+.floatright {
+	float: right;
+    
+    height: 400px;
+    width: 50%;
+}
+.div1 {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    
+}
+
+</style>
+<script>
+var sum =0;
+var diff ;
+var prod =1;
+var quot ;
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+	
+	}
+
+function dropAdd(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var node = document.getElementById(data);
+    var x = parseInt(node.textContent);
+	sum+=x;
+	ev.target.innerHTML=sum;
+	  
+}
+function dropMul(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var node = document.getElementById(data);
+    var x = parseInt(node.textContent);
+	prod*=x;
+	ev.target.innerHTML=prod;
+	  
+}
+function dropSub(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var node = document.getElementById(data);
+    var x = parseInt(node.textContent);
+	if(diff == undefined)
+		diff = x;
+	else
+		diff = diff-x;
+	ev.target.innerHTML=diff;
+	  
+}
+function dropDiv(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var node = document.getElementById(data);
+    var x = parseInt(node.textContent);
+	if(x ==0&&quot!=undefined)
+	{
+		alert("Divison by zero");
+		return;
+	}
+	if(quot == undefined)
+		quot = x;
+	else
+		quot = (quot/x).toFixed(3);
+	ev.target.innerHTML=quot;
+	  
+}
+function clearDiv(op){
+	document.getElementById(op).innerHTML="";
+	if(op =="add")
+		sum=0;
+	else if(op=="sub")
+		diff=undefined;
+	else if(op=="mul")
+		prod=1;
+	else
+		quot=undefined;
+}
+</script>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="floatleft" align="center">
+	<h1>Numbers</h1>
+    <button id="drag1"  draggable="true" ondragstart="dragStart(event)" >		     1
+    </button>
+	<br>
+	<br>
+    
+    <button id="drag2"  draggable="true" ondragstart="dragStart(event)" >		     2
+    </button>
+	<br>
+	<br>
+   
+    <button id="drag3"  draggable="true" ondragstart="dragStart(event)" >		     3
+    </button>
+	<br>
+	<br>
+    
+    <button id="drag4"  draggable="true" ondragstart="dragStart(event)" >		     4
+    </button>
+   <br>
+	<br>
+    <button id="drag5"  draggable="true" ondragstart="dragStart(event)" >		     5
+    </button>
+    <br>
+	<br>
+    <button id="drag6"  draggable="true" ondragstart="dragStart(event)" >		     6
+    </button>
+    <br>
+	<br>
+    <button id="drag7"  draggable="true" ondragstart="dragStart(event)" >		     7
+    </button>
+    <br>
+	<br>
+    <button id="drag8"  draggable="true" ondragstart="dragStart(event)" >		     8
+    </button>
+    <br>
+	<br>
+    <button id="drag9"  draggable="true" ondragstart="dragStart(event)" >		     9
+    </button>
+    <br>
+	<br>
+    <button id="drag0"  draggable="true" ondragstart="dragStart(event)" >		     0
+    </button> 
+    
+    
+    
+    </div>
+    <div class="floatright" align="center">
+	<h3>Addition</h3>
+    <div id="add" class="div1"ondrop="dropAdd(event)" ondragover="allowDrop(event)"></div>
+	<button onclick="clearDiv('add')">clear</button>
+	<h3>Substraction</h3>
+	<div id="sub" class="div1" ondrop="dropSub(event)" ondragover="allowDrop(event)"></div>
+	<button onclick="clearDiv('sub')">clear</button>
+	<h3>Multiplication</h3>
+	<div id="mul" class="div1" ondrop="dropMul(event)" ondragover="allowDrop(event)"></div>
+	<button onclick="clearDiv('mul')">clear</button>
+	<h3>Division</h3>
+	<div id="div" class="div1" ondrop="dropDiv(event)" ondragover="allowDrop(event)"></div>
+	<button onclick="clearDiv('div')">clear</button>
+	
+    
+	<div style="clear: both;">
+</div>
+
+
+
+
+
+
+</body>
+</html>
